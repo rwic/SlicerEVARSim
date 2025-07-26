@@ -1,4 +1,4 @@
-<img src="Resources/Icons/1.jpeg" width="300" height="600">
+<img src="EVARSim/Resources/Icons/1.jpeg" width="300" height="600">
 
 # EVARSim - Endovascular Aneurysm Repair Simulation Extension
 
