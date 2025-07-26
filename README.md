@@ -4,7 +4,7 @@ A 3D Slicer extension for simulating endovascular stent placement along vessel c
 
 ## Overview
 
-EVARSim enables medical professionals and researchers to visualize and simulate stent placement along complex vessel geometries. The extension creates realistic, smooth cylindrical stents that follow vessel centerlines with professional-grade appearance and precise positioning control.
+EVARSim enables medical professionals and researchers to visualize and simulate stent placement along complex vessel geometries. The extension creates cylindrical stents that follow vessel centerlines.
 
 ## Key Features
 
@@ -117,7 +117,7 @@ For branched vessel structures (e.g., aortic bifurcations):
 
 ## Example Data
 
-The extension includes `CL_model.vtk` - a sample branched centerline file demonstrating inverted Y vessel geometry typical in aortic procedures.
+The extension includes `CL_model.vtk` - a sample branched centerline file of the aorta and the aortic bifurcation.
 
 ## Troubleshooting
 
@@ -143,14 +143,12 @@ EVARSim/
 │   ├── UI/EVARSim.ui      # User interface definition
 │   └── Icons/EVARSim.png  # Module icon
 ├── CL_model.vtk           # Sample centerline data
-└── Testing/               # Test files
 ```
 
 ### Key Methods
 - `_reduceCenterlinePoints()`: Strategic point reduction
 - `_applySplineSmoothing()`: Spline interpolation
 - `_createTubeAlongCurve()`: Stent geometry generation
-- `_addRigidEndCaps()`: Professional end cap creation
 
 ## License
 
