@@ -34,18 +34,15 @@ class EVARSim(ScriptedLoadableModule):
         self.parent.dependencies = []
         self.parent.contributors = ["EVARSim Development Team"]
         self.parent.helpText = _("""
-This module allows users to place cylindrical objects along centerline curves for EVAR (Endovascular Aneurysm Repair) simulation.
-Users can adjust cylinder radius, length, and resolution parameters through the GUI interface.
+This module allows users to place endovascular devices along centerline curves for EVAR (Endovascular Aneurysm Repair) simulation.
+Users can adjust device position, radius, length, and resolution parameters through the GUI interface.
 """)
-        # TODO: replace with organization, grant and thanks
         self.parent.acknowledgementText = _("""
-This file was originally developed by Jean-Christophe Fillion-Robin, Kitware Inc., Andras Lasso, PerkLab,
-and Steve Pieper, Isomics, Inc. and was partially funded by NIH grant 3P41RR013218-12S1.
+
 """)
 
         # Additional initialization step after application startup is complete
         slicer.app.connect("startupCompleted()", registerSampleData)
-
 
 #
 # Register sample data sets in Sample Data module
@@ -175,8 +172,8 @@ class EVARSimWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         self.initializeParameterNode()
 
     def exit(self) -> None:
-        """Called each time the user opens a different module."""
-        # Do not react to parameter node changes (GUI will be updated when the user enters into the module)
+        """Called each time the user opens a different module.
+           Do not react to parameter node changes (GUI will be updated when the user enters into the module)"""
         if self._parameterNode:
             self._parameterNode.disconnectGui(self._parameterNodeGuiTag)
             self._parameterNodeGuiTag = None
@@ -232,7 +229,7 @@ class EVARSimWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         hasInput = centerlineNode or inputModelNode
         
         if hasInput and outputNode:
-            self.ui.applyButton.toolTip = _("Create cylindrical object")
+            self.ui.applyButton.toolTip = _("Create device")
             self.ui.applyButton.enabled = True
         else:
             self.ui.applyButton.toolTip = _("Select centerline curve OR input model, and output model")
@@ -452,7 +449,7 @@ class EVARSimWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         self._checkCanApply()
 
     def _onBranchSelected(self) -> None:
-        """Called when user selects a different branch."""
+        # Called when user selects a different branch.
         print(f"Branch selection changed to index {self.ui.branchSelector.currentIndex}")
         
         # Update only the currently selected tube with the new branch
@@ -460,7 +457,7 @@ class EVARSimWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             self._updateSelectedTube()
 
     def _analyzeBranches(self, inputModel: vtkMRMLModelNode) -> None:
-        """Analyze input model to identify branches - only for VTK polyline files."""
+        # Analyze input model to identify branches - only for VTK polyline files.
         try:
             polyData = inputModel.GetPolyData()
             if not polyData:
@@ -527,7 +524,7 @@ class EVARSimWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             self._updateBranchSelector()
 
     def _updateBranchSelector(self) -> None:
-        """Update branch selector dropdown."""
+        # Update branch selector dropdown."""
         self.ui.branchSelector.clear()
         
         if len(self.availableBranches) == 0:
@@ -539,7 +536,7 @@ class EVARSimWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             self.ui.branchSelector.setEnabled(True)
 
     def _createBranchLabels(self) -> None:
-        """Create 3D text labels for each branch in the scene."""
+        # Create 3D text labels for each branch in the scene."""
         # First, remove any existing branch labels
         self._removeBranchLabels()
         
@@ -587,7 +584,7 @@ class EVARSimWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             print(f"Error creating branch labels: {e}")
 
     def _removeBranchLabels(self) -> None:
-        """Remove all existing branch labels from the scene."""
+        # Remove all existing branch labels from the scene."""
         try:
             # Remove fiducial nodes
             fiducialNodes = slicer.util.getNodesByClass("vtkMRMLMarkupsFiducialNode")
@@ -599,8 +596,8 @@ class EVARSimWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             print(f"Error removing branch labels: {e}")
 
     def onApplyButton(self) -> None:
-        """Run processing when user clicks "Apply" button."""
-        with slicer.util.tryWithErrorDisplay(_("Failed to create cylindrical object."), waitCursor=True):
+        # Run processing when user clicks "Apply" button."""
+        with slicer.util.tryWithErrorDisplay(_("Failed to create device."), waitCursor=True):
             # Create cylindrical object along centerline
             self.logic.process(
                 self.ui.centerlineSelector.currentNode(),
@@ -704,9 +701,9 @@ class EVARSimLogic(ScriptedLoadableModuleLogic):
         return points
 
     def _findCenterAtLevel(self, polyData: vtk.vtkPolyData, axis: str, level: float, bounds) -> tuple:
-        """
-        Find the center of mass of model points at a specific level along the given axis.
-        """
+        
+        # Find the center of mass of model points at a specific level along the given axis.
+        
         import numpy as np
         
         # Get all points from the model
@@ -825,10 +822,9 @@ class EVARSimLogic(ScriptedLoadableModuleLogic):
         return positionedPoints
 
     def _createTubeAlongCurve(self, curvePoints: vtk.vtkPoints, radius: float, resolution: int) -> vtk.vtkPolyData:
-        """
-        Create a clean cylindrical tube that follows the curve points.
-        Creates rigid, perpendicular end caps like real stents.
-        """
+        
+        # Create a device that follows the curve points.
+        
         import numpy as np
         
         # Use the resolution as specified, but ensure it's reasonable for smooth appearance
@@ -887,9 +883,9 @@ class EVARSimLogic(ScriptedLoadableModuleLogic):
     
     def _addRigidEndCaps(self, tubePolyData: vtk.vtkPolyData, curvePoints: vtk.vtkPoints, 
                         radius: float, resolution: int) -> vtk.vtkPolyData:
-        """
-        Add rigid, perpendicular end caps to the tube like real stents.
-        """
+        # Add rigid, perpendicular end caps to the tube like real stents. 
+        # TODO: I have to rethink this step
+        
         import numpy as np
         
         # Create a copy of the tube to modify
@@ -930,9 +926,9 @@ class EVARSimLogic(ScriptedLoadableModuleLogic):
         return appendFilter.GetOutput()
     
     def _createCircularCap(self, center, normal, radius: float, resolution: int) -> vtk.vtkPolyData:
-        """
-        Create a rigid circular cap perpendicular to the given normal direction.
-        """
+        # Create a rigid circular cap perpendicular to the given normal direction.
+        # TODO: See above
+        
         import numpy as np
         
         # Normalize the normal vector
@@ -983,9 +979,8 @@ class EVARSimLogic(ScriptedLoadableModuleLogic):
 
     def _createMultipleTubes(self, curvePoints: vtk.vtkPoints, radius: float, length: float, 
                            basePosition: float, numberOfTubes: int, resolution: int) -> vtk.vtkPolyData:
-        """
-        Create multiple tubes along the centerline with automatic spacing.
-        """
+        # Create multiple tubes along the centerline with automatic spacing.
+
         import numpy as np
         
         # Calculate total centerline length
@@ -1059,9 +1054,9 @@ class EVARSimLogic(ScriptedLoadableModuleLogic):
 
     def _createSeparateTubes(self, curvePoints: vtk.vtkPoints, radius: float, length: float,
                            basePosition: float, numberOfTubes: int, resolution: int, outputModel: vtkMRMLModelNode):
-        """
-        Create multiple tubes as separate models that can be controlled individually.
-        """
+                           
+        # Create multiple tubes as separate models that can be controlled individually.
+
         import numpy as np
         
         # Calculate evenly distributed positions
@@ -1416,7 +1411,7 @@ class EVARSimLogic(ScriptedLoadableModuleLogic):
                 resolution: int,
                 showResult: bool = True) -> None:
         """
-        Create cylindrical objects along a centerline curve or extracted from input model.
+        Create tubes along a centerline curve or extracted from input model.
         Can be used without GUI widget.
         :param centerlineCurve: curve that defines the centerline for cylinder placement (optional)
         :param inputModel: model from which to extract centerline (optional, alternative to centerlineCurve)
@@ -1528,7 +1523,7 @@ class EVARSimLogic(ScriptedLoadableModuleLogic):
 
 class EVARSimTest(ScriptedLoadableModuleTest):
     """
-    This is the test case for your scripted module.
+    This is the test case for the scripted module.
     Uses ScriptedLoadableModuleTest base class, available at:
     https://github.com/Slicer/Slicer/blob/main/Base/Python/slicer/ScriptedLoadableModule.py
     """

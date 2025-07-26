@@ -6,7 +6,7 @@ project(EVARSim)
 # Extension meta-information
 set(EXTENSION_HOMEPAGE "https://www.slicer.org/wiki/Documentation/Nightly/Extensions/EVARSim")
 set(EXTENSION_CONTRIBUTORS "Ralph Wickenhoefer (rwGroup)")
-set(EXTENSION_DESCRIPTION "Simulation endovaskulaerer Devices")
+set(EXTENSION_DESCRIPTION "Simulation of endovascular Devices")
 set(EXTENSION_ICONURL "https://www.example.com/Slicer/Extensions/EVARSim.png")
 set(EXTENSION_SCREENSHOTURLS "https://www.example.com/Slicer/Extensions/EVARSim/Screenshots/1.png")
 set(EXTENSION_DEPENDS "NA") # Specified as a list or "NA" if no dependencies

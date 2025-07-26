@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>325</width>
-    <height>311</height>
+    <height>382</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -48,14 +48,14 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="2" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
          <string>Cylinder radius:</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="2" column="1">
        <widget class="ctkSliderWidget" name="cylinderRadiusSliderWidget">
         <property name="toolTip">
          <string>Set the radius of the cylindrical object.</string>
@@ -77,14 +77,14 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="3" column="0">
        <widget class="QLabel" name="label_4">
         <property name="text">
          <string>Cylinder length:</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="3" column="1">
        <widget class="ctkSliderWidget" name="cylinderLengthSliderWidget">
         <property name="toolTip">
          <string>Set the length of the cylindrical object.</string>
@@ -106,14 +106,14 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item row="4" column="0">
        <widget class="QLabel" name="label_7">
         <property name="text">
          <string>Cylinder position:</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
+      <item row="4" column="1">
        <widget class="ctkSliderWidget" name="cylinderPositionSliderWidget">
         <property name="toolTip">
          <string>Set the position of the cylinder along the centerline (0 = start, 1 = end).</string>
@@ -135,14 +135,14 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="5" column="0">
        <widget class="QLabel" name="label_9">
         <property name="text">
          <string>Selected tube:</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
+      <item row="5" column="1">
        <widget class="QComboBox" name="tubeSelector">
         <property name="toolTip">
          <string>Select which tube to control with the sliders.</string>
@@ -154,14 +154,14 @@
         </item>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item row="6" column="0">
        <widget class="QLabel" name="label_10">
         <property name="text">
          <string>Selected branch:</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
+      <item row="6" column="1">
        <widget class="QComboBox" name="branchSelector">
         <property name="toolTip">
          <string>Select which branch of the centerline to use for tube placement.</string>
@@ -173,14 +173,14 @@
         </item>
        </widget>
       </item>
-      <item row="6" column="0">
+      <item row="1" column="0">
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>OR Input model:</string>
+         <string>Input model:</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
+      <item row="1" column="1">
        <widget class="qMRMLNodeComboBox" name="inputModelSelector">
         <property name="toolTip">
          <string>Alternative input: select a model to extract centerline from.</string>
@@ -382,17 +382,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>qMRMLNodeComboBox</class>
-   <extends>QWidget</extends>
-   <header>qMRMLNodeComboBox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>qMRMLWidget</class>
-   <extends>QWidget</extends>
-   <header>qMRMLWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ctkCollapsibleButton</class>
    <extends>QWidget</extends>
    <header>ctkCollapsibleButton.h</header>
@@ -402,6 +391,17 @@
    <class>ctkSliderWidget</class>
    <extends>QWidget</extends>
    <header>ctkSliderWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>qMRMLNodeComboBox</class>
+   <extends>QWidget</extends>
+   <header>qMRMLNodeComboBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>qMRMLWidget</class>
+   <extends>QWidget</extends>
+   <header>qMRMLWidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
