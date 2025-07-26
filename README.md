@@ -1,3 +1,5 @@
+<img src="Resources/Icons/1.jpeg" width="300" height="600">
+
 # EVARSim - Endovascular Aneurysm Repair Simulation Extension
 
 A 3D Slicer extension for simulating endovascular stent placement along vessel centerlines, specifically designed for EVAR (Endovascular Aneurysm Repair) procedures.
