@@ -142,7 +142,7 @@ EVARSim/
 ├── Resources/
 │   ├── UI/EVARSim.ui      # User interface definition
 │   └── Icons/EVARSim.png  # Module icon
-├── CL_model.vtk           # Sample centerline data
+└── CL_model.vtk           # Sample centerline data
 ```
 
 ### Key Methods
@@ -152,7 +152,7 @@ EVARSim/
 
 ## License
 
-This extension is developed for medical research and educational purposes. Please ensure compliance with your institution's software usage policies.
+See License.txt. This extension is developed for medical research and educational purposes. Please ensure compliance with your institution's software usage policies.
 
 ## Contributing
 
