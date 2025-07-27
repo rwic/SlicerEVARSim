@@ -7,8 +7,8 @@ project(EVARSim)
 set(EXTENSION_HOMEPAGE "https://www.slicer.org/wiki/Documentation/Nightly/Extensions/EVARSim")
 set(EXTENSION_CONTRIBUTORS "Ralph Wickenhoefer (rwGroup)")
 set(EXTENSION_DESCRIPTION "Simulation of endovascular Devices")
-set(EXTENSION_ICONURL "https://www.example.com/Slicer/Extensions/EVARSim.png")
-set(EXTENSION_SCREENSHOTURLS "https://www.example.com/Slicer/Extensions/EVARSim/Screenshots/1.png")
+set(EXTENSION_ICONURL "https://raw.githubusercontent.com/rwic/SlicerEVARSim/refs/heads/main/EVARSim/Resources/Icons/EVARSim.png")
+set(EXTENSION_SCREENSHOTURLS "https://raw.githubusercontent.com/rwic/SlicerEVARSim/refs/heads/main/EVARSim/Resources/Icons/1.jpeg")
 set(EXTENSION_DEPENDS "NA") # Specified as a list or "NA" if no dependencies
 
 #-----------------------------------------------------------------------------
