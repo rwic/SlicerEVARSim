@@ -18,7 +18,6 @@ include(${Slicer_USE_FILE})
 
 #-----------------------------------------------------------------------------
 # Extension modules
-add_subdirectory(Test)
 add_subdirectory(EVARSim)
 ## NEXT_MODULE
 
